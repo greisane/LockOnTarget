@@ -15,10 +15,14 @@ struct LOCKONTARGET_API FFindTargetRequestParams
 	GENERATED_BODY()
 
 public:
-	
+
 	/** Whether to generate a detailed response. May have a significant impact on performance. */
 	UPROPERTY(BlueprintReadWrite, Category = "Request Params")
 	bool bGenerateDetailedResponse = false;
+
+	/** Find a new target even if currently locked. */
+	UPROPERTY(BlueprintReadWrite, Category = "Request Params")
+	bool bReset = false;
 
 	/** Optional player input. */
 	UPROPERTY(BlueprintReadWrite, Category = "Request Params")

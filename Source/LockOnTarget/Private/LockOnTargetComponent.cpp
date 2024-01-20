@@ -58,6 +58,11 @@ void ULockOnTargetComponent::BeginPlay()
 			Extensions.RemoveAtSwap(i);
 		}
 	}
+
+	if (bAutoTargetAlways && bCanCaptureTarget && HasAuthorityOverTarget())
+	{
+		SetComponentTickEnabled(true);
+	}
 }
 
 void ULockOnTargetComponent::EndPlay(EEndPlayReason::Type EndPlayReason)
@@ -83,6 +88,13 @@ void ULockOnTargetComponent::EndPlay(EEndPlayReason::Type EndPlayReason)
 void ULockOnTargetComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	if (bAutoTargetAlways && CanCaptureTarget())
+	{
+		FFindTargetRequestParams RequestParams;
+		RequestParams.bReset = true;
+		RequestFindTarget(RequestParams);
+	}
 
 	if (IsTargetLocked())
 	{
@@ -252,6 +264,7 @@ void ULockOnTargetComponent::SetCanCaptureTarget(bool bInCanCaptureTarget)
 		if (!bCanCaptureTarget)
 		{
 			ClearTargetManual();
+			SetComponentTickEnabled(bAutoTargetAlways && CanCaptureTarget());
 		}
 	}
 }
@@ -383,7 +396,7 @@ void ULockOnTargetComponent::NotifyTargetReleased(const FTargetInfo& Target)
 	check(Target.TargetComponent);
 
 	bIsTargetLocked = false;
-	SetComponentTickEnabled(false);
+	SetComponentTickEnabled(bAutoTargetAlways && CanCaptureTarget());
 	Target->NotifyTargetReleased(this);
 
 	ForEachSubobject([&Target](ULockOnTargetExtensionProxy* Extension)

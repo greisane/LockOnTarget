@@ -47,6 +47,10 @@ private: /** Core Config */
 	UPROPERTY(EditAnywhere, Category = "Default Settings")
 	bool bCanCaptureTarget;
 
+	/** Find the most appropriate Target on every frame. Use to combine free aim with auto targeting. */
+	UPROPERTY(EditAnywhere, Category = "Default Settings")
+	bool bAutoTargetAlways;
+
 	/** Special extension that handles the Target. Get/SetTargetHandler(). */
 	UPROPERTY(Instanced, EditAnywhere, Category = "Default Settings")
 	UTargetHandlerBase* TargetHandlerImplementation;

@@ -46,7 +46,9 @@ UWeightedTargetHandler::UWeightedTargetHandler()
 
 FFindTargetRequestResponse UWeightedTargetHandler::FindTarget_Implementation(const FFindTargetRequestParams& RequestParams)
 {
-	const EFindTargetContextMode ContextMode = GetLockOnTargetComponent()->IsTargetLocked() ? EFindTargetContextMode::Switch : EFindTargetContextMode::Find;
+	const EFindTargetContextMode ContextMode = (RequestParams.bReset || !GetLockOnTargetComponent()->IsTargetLocked())
+		? EFindTargetContextMode::Find
+		: EFindTargetContextMode::Switch;
 	FFindTargetContext Context = CreateFindTargetContext(ContextMode, RequestParams);
 	return FindTargetBatched(Context);
 }
@@ -395,7 +397,7 @@ FFindTargetContext UWeightedTargetHandler::CreateFindTargetContext(EFindTargetCo
 	GetPointOfView(Context.ViewLocation, Context.ViewRotation);
 	Context.ViewRotationMatrix = FRotationMatrix::Make(Context.ViewRotation);
 
-	if (Context.Instigator->IsTargetLocked())
+	if (Context.Instigator->IsTargetLocked() && !Context.RequestParams.bReset)
 	{
 		Context.CapturedTarget = CreateTargetContext(Context, { Context.Instigator->GetTargetComponent(), Context.Instigator->GetCapturedSocket() });
 	}
