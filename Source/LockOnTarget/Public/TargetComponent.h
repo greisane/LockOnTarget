@@ -181,7 +181,7 @@ public: /** Sockets */
 
 	/** Updates the default Socket in 0 index. */
 	UFUNCTION(BlueprintCallable, Category = "Target", meta = (AutoCreateRefTerm = "Socket"))
-	FName GetDefaultSocket() const { return Sockets.IsEmpty() ? NAME_None : Sockets[0]; }
+	FName GetDefaultSocket() const { return Sockets.Num() ? Sockets[0] : NAME_None; }
 
 	/** Adds a Socket at runtime. */
 	UFUNCTION(BlueprintCallable, Category = "Target", meta = (AutoCreateRefTerm = "Socket"))

@@ -62,9 +62,9 @@ void UPawnRotationExtension::Update(float DeltaTime)
 			const FVector TargetLocation = GetLockOnTargetComponent()->GetCapturedFocusPointLocation();
 
 			const FVector ToTarget = TargetLocation - Pivot;
-			const double DesiredYaw = FMath::RadiansToDegrees(FMath::Atan2(ToTarget.Y, ToTarget.X));
+			const float DesiredYaw = FMath::RadiansToDegrees(FMath::Atan2(ToTarget.Y, ToTarget.X));
 
-			if (!FMath::IsNearlyEqual(CurrentRotation.Yaw, DesiredYaw, 1e-3))
+			if (!FMath::IsNearlyEqual(CurrentRotation.Yaw, DesiredYaw, 1e-3f))
 			{
 				FRotator TargetRotation = CurrentRotation;
 				TargetRotation.Yaw = FMath::FixedTurn(CurrentRotation.Yaw, DesiredYaw, GetDeltaYaw(DeltaTime));

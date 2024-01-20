@@ -39,7 +39,7 @@ private: /** Internal */
 	FTargetInfo PreviewTarget;
 
 	UPROPERTY(Transient)
-	TObjectPtr<UWidgetComponent> Widget;
+	UWidgetComponent* Widget;
 
 	TSharedPtr<FStreamableHandle> StreamableHandle;
 

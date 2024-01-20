@@ -26,7 +26,7 @@ public:
 
 	/** An optional payload object passed along with the request. Might be useful for custom implementations. */
 	UPROPERTY(BlueprintReadWrite, Category = "Request Params")
-	TObjectPtr<UObject> Payload = nullptr;
+	UObject* Payload = nullptr;
 };
 
 /**
@@ -45,7 +45,7 @@ public:
 
 	/** An optional payload object passed along with the response. May be useful for custom implementations. */
 	UPROPERTY(BlueprintReadWrite, Category = "Request Params")
-	TObjectPtr<UObject> Payload = nullptr;
+	UObject* Payload = nullptr;
 };
 
 /**
@@ -74,7 +74,7 @@ public: /** Target Handler Interface */
 	 * @return	Target to be captured or NULL_TARGET.
 	 */
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "LockOnTarget|Target Handler Base", meta = (AutoCreateRefTerm="RequestParams"))
-	FFindTargetRequestResponse FindTarget(const FFindTargetRequestParams& RequestParams = FFindTargetRequestParams());
+	FFindTargetRequestResponse FindTarget(const FFindTargetRequestParams& RequestParams);
 
 	/**
 	 * (Optional) Checks the Target state between updates.

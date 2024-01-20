@@ -16,7 +16,6 @@
 #include "Internationalization/Text.h"
 #include "Misc/Attribute.h"
 
-#include "Styling/AppStyle.h"
 #include "Framework/MultiBox/MultiBoxBuilder.h"
 #include "Framework/Commands/UIAction.h"
 #include "Styling/SlateColor.h"
@@ -69,13 +68,13 @@ void FTargetComponentDetails::CustomizeDetails(IDetailLayoutBuilder& DetailLayou
 					SNew(SComboButton)
 					.OnGetMenuContent(this, &FTargetComponentDetails::OnGetMeshContent)
 					.ContentPadding(0.0f)
-					.ButtonStyle(FAppStyle::Get(), "ToggleButton")
+					.ButtonStyle(FEditorStyle::Get(), "ToggleButton")
 					.ForegroundColor(FSlateColor::UseForeground())
 					.VAlign(VAlign_Center)
 					.ButtonContent()
 					[
 						SAssignNew(AssociatedComponentNameTextBox, SEditableTextBox)
-						.Font(FAppStyle::GetFontStyle(TEXT("PropertyWindow.NormalFont")))
+						.Font(FEditorStyle::GetFontStyle(TEXT("PropertyWindow.NormalFont")))
 						.OnTextCommitted(this, &FTargetComponentDetails::OnCommitAssociatedComponentNameText)
 					]
 				];

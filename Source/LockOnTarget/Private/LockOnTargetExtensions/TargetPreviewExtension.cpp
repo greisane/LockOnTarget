@@ -139,7 +139,7 @@ void UTargetPreviewExtension::UpdateTargetPreview()
 
 	if (UTargetHandlerBase* const TargetHandler = Owner->GetTargetHandler())
 	{
-		const FFindTargetRequestResponse Response = TargetHandler->FindTarget();
+		const FFindTargetRequestResponse Response = TargetHandler->FindTarget(FFindTargetRequestParams());
 		const FTargetInfo Preview = Response.Target;
 
 		if (Owner->IsTargetValid(Preview.TargetComponent))

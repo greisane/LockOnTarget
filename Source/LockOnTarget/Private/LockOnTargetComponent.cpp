@@ -480,7 +480,7 @@ void ULockOnTargetComponent::DestroySubobject(ULockOnTargetExtensionProxy* Subob
 			Subobject->Deinitialize(this);
 		}
 
-		Subobject->MarkAsGarbage();
+		Subobject->MarkPendingKill();
 	}
 }
 

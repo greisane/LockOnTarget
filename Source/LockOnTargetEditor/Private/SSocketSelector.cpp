@@ -10,13 +10,8 @@
 #include "Widgets/Input/SEditableTextBox.h"
 
 #include "Runtime/Launch/Resources/Version.h"
-#if ENGINE_MINOR_VERSION <= 2 //&& ENGINE_MAJOR_VERSION == 5
-#include "SceneOutliner/Private/SSocketChooser.h"
-#else
 #include "SSocketChooser.h"
-#endif
 
-#include "Styling/AppStyle.h"
 #include "Styling/SlateColor.h"
 
 void SSocketSelector::Construct(const FArguments& InArgs)
@@ -35,13 +30,13 @@ void SSocketSelector::Construct(const FArguments& InArgs)
 		SNew(SComboButton)
 		.OnGetMenuContent(this, &SSocketSelector::OnGetSocketContent)
 		.ContentPadding(0.0f)
-		.ButtonStyle(FAppStyle::Get(), "ToggleButton")
+		.ButtonStyle(FEditorStyle::Get(), "ToggleButton")
 		.ForegroundColor(FSlateColor::UseForeground())
 		.VAlign(VAlign_Center)
 		.ButtonContent()
 		[
 			SAssignNew(TextBox, SEditableTextBox)
-			.Font(FAppStyle::GetFontStyle(TEXT("PropertyWindow.NormalFont")))
+			.Font(FEditorStyle::GetFontStyle(TEXT("PropertyWindow.NormalFont")))
 			.OnTextCommitted(this, &SSocketSelector::OnTextBoxCommitted)
 		]
 	];

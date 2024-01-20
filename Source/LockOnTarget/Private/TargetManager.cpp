@@ -5,19 +5,13 @@
 
 UTargetManager::UTargetManager()
 {
-	//Do something.
+	RegisteredTargets.Reserve(30);
 }
 
 UTargetManager& UTargetManager::Get(UWorld& InWorld)
 {
-	checkf(InWorld.HasSubsystem<ThisClass>(), TEXT("Unable to access the TargetManager subsystem."));
+	checkf(InWorld.GetSubsystem<ThisClass>(), TEXT("Unable to access the TargetManager subsystem."));
 	return *InWorld.GetSubsystem<ThisClass>();
-}
-
-void UTargetManager::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	RegisteredTargets.Reserve(30);
 }
 
 bool UTargetManager::DoesSupportWorldType(const EWorldType::Type Type) const

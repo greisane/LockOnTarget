@@ -49,7 +49,7 @@ private:
 public:
 
 	UPROPERTY(BlueprintReadWrite, Category = "TargetInfo")
-	TObjectPtr<UTargetComponent> TargetComponent = nullptr;
+	UTargetComponent* TargetComponent = nullptr;
 	
 	UPROPERTY(BlueprintReadWrite, Category = "TargetInfo")
 	FName Socket = NAME_None;

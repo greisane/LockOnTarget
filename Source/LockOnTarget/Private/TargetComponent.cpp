@@ -143,13 +143,13 @@ FVector UTargetComponent::GetSocketLocation(FName Socket) const
 
 void UTargetComponent::SetDefaultSocket(FName Socket)
 {
-	if (Sockets.IsEmpty())
+	if (Sockets.Num())
 	{
-		Sockets.Add(Socket);
+		Sockets[0] = Socket;
 	}
 	else
 	{
-		Sockets[0] = Socket;
+		Sockets.Add(Socket);
 	}
 }
 

@@ -35,7 +35,7 @@ private:
 
 	//The actual widget to display.
 	UPROPERTY(Transient)
-	TObjectPtr<UWidgetComponent> Widget;
+	UWidgetComponent* Widget;
 
 	//Stores the last async loaded widget class in memory.
 	TSharedPtr<FStreamableHandle> StreamableHandle;

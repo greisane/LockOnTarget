@@ -49,11 +49,11 @@ private: /** Core Config */
 
 	/** Special extension that handles the Target. Get/SetTargetHandler(). */
 	UPROPERTY(Instanced, EditDefaultsOnly, Category = "Default Settings")
-	TObjectPtr<UTargetHandlerBase> TargetHandlerImplementation;
+	UTargetHandlerBase* TargetHandlerImplementation;
 	
 	/** Set of customizable independent features. Add/RemoveExtensionByClass(). */
 	UPROPERTY(Instanced, EditDefaultsOnly, Category = "Extensions", meta = (DisplayName = "Default Extensions", NoResetToDefault))
-	TArray<TObjectPtr<ULockOnTargetExtensionBase>> Extensions;
+	TArray<ULockOnTargetExtensionBase*> Extensions;
 
 public: /** Input Config */
 

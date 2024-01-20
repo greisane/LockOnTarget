@@ -116,19 +116,19 @@ public: /** General */
 
 	//TargetHandler that created this context.
 	UPROPERTY(BlueprintReadOnly, Category = "Find Target Context")
-	TObjectPtr<UWeightedTargetHandler> TargetHandler = nullptr;
+	UWeightedTargetHandler* TargetHandler = nullptr;
 
 	//LockOnTargetComponent. FindTarget Instigator.
 	UPROPERTY(BlueprintReadOnly, Category = "Find Target Context")
-	TObjectPtr<ULockOnTargetComponent> Instigator = nullptr;
+	ULockOnTargetComponent* Instigator = nullptr;
 
 	//Owner of Instigator.
 	UPROPERTY(BlueprintReadOnly, Category = "Find Target Context")
-	TObjectPtr<APawn> InstigatorPawn = nullptr;
+	APawn* InstigatorPawn = nullptr;
 
 	//PlayerController associated with Instigator.
 	UPROPERTY(BlueprintReadOnly, Category = "Find Target Context")
-	TObjectPtr<APlayerController> PlayerController = nullptr;
+	APlayerController* PlayerController = nullptr;
 
 	//Normalized PlayerInput.
 	UPROPERTY(BlueprintReadOnly, Category = "Find Target Context")

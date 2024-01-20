@@ -248,25 +248,25 @@ float UWeightedTargetHandler::CalculateTargetWeight_Implementation(const FFindTa
 				OutWeight += PureDefaultWeight * Weight * WeightNormalizer * Factor;
 			};
 
-		if (DistanceWeight > UE_KINDA_SMALL_NUMBER)
+		if (DistanceWeight > KINDA_SMALL_NUMBER)
 		{
 			const float Ratio = TargetContext.DistanceSq / FMath::Square(DistanceMaxFactor);
 			ApplyFactor(DistanceWeight, Ratio);
 		}
 
-		if (DeltaAngleWeight > UE_KINDA_SMALL_NUMBER)
+		if (DeltaAngleWeight > KINDA_SMALL_NUMBER)
 		{
 			const float Ratio = FMath::RadiansToDegrees(FMath::Acos(TargetContext.Direction | Context.SolverViewDirection)) / DeltaAngleMaxFactor;
 			ApplyFactor(DeltaAngleWeight, Ratio);
 		}
 
-		if (Context.Mode == EFindTargetContextMode::Switch && PlayerInputWeight > UE_KINDA_SMALL_NUMBER)
+		if (Context.Mode == EFindTargetContextMode::Switch && PlayerInputWeight > KINDA_SMALL_NUMBER)
 		{
 			const float Ratio = TargetContext.DeltaAngle2D / PlayerInputAngularRange;
 			ApplyFactor(PlayerInputWeight, Ratio);
 		}
 
-		if (TargetPriorityWeight > UE_KINDA_SMALL_NUMBER)
+		if (TargetPriorityWeight > KINDA_SMALL_NUMBER)
 		{
 			ApplyFactor(TargetPriorityWeight, TargetContext.Target->Priority);
 		}
@@ -421,7 +421,7 @@ FTargetContext UWeightedTargetHandler::CreateTargetContext(const FFindTargetCont
 	const FVector Delta = TargetContext.Location - Context.ViewLocation;
 	TargetContext.DistanceSq = Delta.SizeSquared();
 
-	if (TargetContext.DistanceSq > UE_KINDA_SMALL_NUMBER)
+	if (TargetContext.DistanceSq > KINDA_SMALL_NUMBER)
 	{
 		TargetContext.Direction = Delta * FMath::InvSqrt(TargetContext.DistanceSq);
 	}

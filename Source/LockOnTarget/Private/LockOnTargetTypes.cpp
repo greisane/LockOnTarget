@@ -101,7 +101,8 @@ uint32 FTargetInfo::GetSocketIndex() const
 
 	if (IsValid(TargetComponent))
 	{
-		if(int32 FoundIdx = TargetComponent->GetSockets().IndexOfByKey(Socket); FoundIdx != INDEX_NONE)
+		const int32 FoundIdx = TargetComponent->GetSockets().IndexOfByKey(Socket);
+		if (FoundIdx != INDEX_NONE)
 		{
 			Index = FoundIdx;
 		}

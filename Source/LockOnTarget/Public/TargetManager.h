@@ -45,6 +45,5 @@ public:
 protected: /** Overrides */
 	
 	//UWorldSubsystem
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	virtual bool DoesSupportWorldType(const EWorldType::Type Type) const override;
 };
